@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,7 +43,6 @@
             font-family: 'DM Sans', sans-serif;
             min-height: 100vh;
             overflow: hidden;
-            /* Support for notch on modern phones */
             padding-top: env(safe-area-inset-top);
         }
 
@@ -310,10 +310,8 @@ const installBanner = document.getElementById('install-banner');
 const installBtn = document.getElementById('btn-install');
 
 window.addEventListener('beforeinstallprompt', (e) => {
-    // Empêcher l'affichage automatique
     e.preventDefault();
     deferredPrompt = e;
-    // Afficher notre bannière custom
     installBanner.classList.add('show');
 });
 
@@ -328,9 +326,6 @@ installBtn.addEventListener('click', async () => {
         deferredPrompt = null;
     }
 });
-
-// Appareils Apple (iOS) ne supportent pas bien le bouton d'installation, 
-// les utilisateurs doivent faire "Partager" -> "Sur l'écran d'accueil"
 
 // ── LOGIQUE DE L'APP ──
 const initAuth = async () => {
@@ -475,7 +470,6 @@ function renderChat() {
     container.innerHTML = '';
     active.forEach(msg => {
         const isMe = msg.authorId === currentUser?.uid;
-        const score = (msg.upvotes || []).length - (msg.downvotes || []).length;
         const row = document.createElement('div');
         row.className = `msg-row ${isMe ? 'me' : 'them'}`;
 
@@ -498,10 +492,8 @@ function scrollToBottom() {
 function escapeHtml(text) {
     return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
-
 </script>
 </body>
 </html>
-
 
 ```
